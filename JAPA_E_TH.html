@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#101010">
+<title>Nosso cantinho — JAPA & TH</title>
+<style>
+:root{--bg:#0b0b0d;--panel:#151518;--line:#29292e;--red:#c51f35;--soft:#e9e5e5;--muted:#aaa4a7}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:radial-gradient(ellipse at 50% -15%,#391018 0%,#111114 40%,var(--bg) 75%);color:var(--soft);font-family:Georgia,'Times New Roman',serif;min-height:100vh}
+button,input,textarea{font:inherit}.wrap{width:min(920px,92%);margin:auto}.hidden{display:none!important}
+#gate{min-height:100vh;display:grid;place-items:center;padding:24px}.gate-card,.card{background:rgba(21,21,24,.92);border:1px solid var(--line);border-radius:22px;box-shadow:0 20px 70px #0008}
+.gate-card{width:min(440px,100%);padding:34px;text-align:center}.mark{width:54px;height:54px;border:1px solid #9e2638;color:#f1dfe2;border-radius:50%;display:grid;place-items:center;margin:0 auto 18px;font-size:21px}
+.eyebrow{font:11px Arial,sans-serif;letter-spacing:.28em;text-transform:uppercase;color:#e36b7b}.gate-card h1,.hero h1{font-weight:normal;margin:8px 0 12px}.gate-card h1{font-size:34px}.sub{color:var(--muted);line-height:1.65;font-size:14px}
+.field{width:100%;padding:14px 15px;background:#0d0d10;border:1px solid #39353a;border-radius:12px;color:white;outline:none;margin:10px 0}.field:focus{border-color:var(--red)}
+.btn{border:1px solid #a72a3c;background:linear-gradient(135deg,#a8172d,#65101e);color:white;padding:12px 18px;border-radius:999px;cursor:pointer;transition:.2s}.btn:hover{filter:brightness(1.15);transform:translateY(-1px)}.btn.ghost{background:transparent;border-color:#51474b;color:#e8dfe1}
+.note{font:11px/1.5 Arial,sans-serif;color:#938c90;margin-top:16px}.error{color:#ff8998;font:12px Arial,sans-serif;min-height:18px}
+header{position:sticky;top:0;z-index:5;background:#0b0b0deF;backdrop-filter:blur(14px);border-bottom:1px solid #292327}
+nav{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:14px 0}.brand{font-size:15px;letter-spacing:.12em}.brand b{color:#e04a60;font-weight:normal}
+.navlinks{display:flex;gap:16px;flex-wrap:wrap}.navlinks a{color:#c8c0c3;text-decoration:none;font:11px Arial,sans-serif}.navlinks a:hover{color:white}
+.hero{padding:78px 0 58px;text-align:center}.hero h1{font-size:clamp(42px,8vw,76px);letter-spacing:-.04em}.hero h1 span{color:#e04459}.hero p{max-width:570px;margin:18px auto;color:#c1b9bd;line-height:1.8;font-size:16px}.ornament{color:#b52a40;letter-spacing:.5em;margin:24px 0}
+section{padding:28px 0 48px}.section-head{text-align:center;margin-bottom:24px}.section-head small{font:10px Arial,sans-serif;letter-spacing:.25em;color:#e36b7b;text-transform:uppercase}.section-head h2{font-weight:normal;font-size:30px;margin:9px 0}
+.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}.card{padding:22px}.card h3{font-size:21px;font-weight:normal;margin:0 0 10px}.card p{color:#bcb4b8;line-height:1.7;font-size:14px;margin:0}.wide{grid-column:1/-1}
+.memory{border-left:2px solid var(--red);padding:3px 0 3px 16px;margin:15px 0}.memory strong{display:block;font-weight:normal;color:#f1dfe2;margin-bottom:5px}
+textarea{width:100%;min-height:100px;resize:vertical;background:#0e0e11;color:#eee;border:1px solid #39353a;border-radius:12px;padding:13px;line-height:1.5}
+footer{text-align:center;padding:35px 0 55px;color:#827a7e;font-size:12px}.heart{color:#d8324b}
+.actions{display:flex;gap:9px;flex-wrap:wrap;margin-top:14px}.small{font:11px Arial,sans-serif;color:#958d91;line-height:1.5}
+audio{width:100%;margin-top:12px;filter:grayscale(1)}
+@media(max-width:650px){.grid{grid-template-columns:1fr}.wide{grid-column:auto}.navlinks{gap:10px}.navlinks a{font-size:10px}.hero{padding:60px 0 42px}.gate-card{padding:27px 22px}}
+</style>
+</head>
+<body>
+<div id="gate">
+  <div class="gate-card">
+    <div class="mark">J<span class="heart">♥</span>T</div>
+    <div class="eyebrow">um espaço só nosso</div>
+    <h1>Nosso cantinho</h1>
+    <p class="sub">Algumas histórias merecem um lugar especial. Este aqui é feito de lembranças, carinho e vontade de continuar construindo.</p>
+    <div id="setup" class="hidden">
+      <p class="sub">Crie uma senha para abrir este cantinho neste navegador.</p>
+      <input id="newPass" class="field" type="password" placeholder="Crie uma senha" autocomplete="new-password">
+      <input id="confirmPass" class="field" type="password" placeholder="Confirme a senha" autocomplete="new-password">
+      <button class="btn" id="savePass">Criar senha e entrar</button>
+    </div>
+    <div id="login" class="hidden">
+      <input id="pass" class="field" type="password" placeholder="Digite a senha" autocomplete="current-password">
+      <button class="btn" id="enter">Entrar</button>
+    </div>
+    <div class="error" id="err"></div>
+    <p class="note">Aviso: esta primeira versão usa uma senha local no navegador. Ela não protege o conteúdo contra alguém que tenha acesso técnico ao arquivo ou ao dispositivo. Para privacidade real, será necessário publicar com autenticação segura.</p>
+  </div>
+</div>
+
+<div id="site" class="hidden">
+<header><div class="wrap"><nav>
+  <div class="brand">JAPA <b>&</b> TH</div>
+  <div class="navlinks"><a href="#historia">HISTÓRIA</a><a href="#cartas">CARTAS</a><a href="#ela">ELA</a><a href="#futuro">FUTURO</a></div>
+</nav></div></header>
+<main class="wrap">
+  <div class="hero">
+    <div class="eyebrow">JAPA & TH · nosso espaço</div>
+    <h1>Nosso <span>cantinho.</span></h1>
+    <div class="ornament">✦ ── ♥ ── ✦</div>
+    <p>Pra você lembrar que é amada, valorizada e importante. Sem pressa, sem cobrança e sem precisar responder nada. Só um lugar onde meu carinho por você pode ficar guardado.</p>
+    <button class="btn ghost" id="musicToggle">♫ Música: desligada</button>
+    <input id="musicFile" type="file" accept="audio/*" class="field" style="max-width:310px;display:none">
+    <div class="small" style="margin-top:9px">Escolha uma música do seu celular para tocar enquanto visita o site.</div>
+    <audio id="audio" controls class="hidden"></audio>
+  </div>
+
+  <section id="historia">
+    <div class="section-head"><small>capítulo de nós dois</small><h2>Nossa história</h2></div>
+    <div class="card">
+      <p>Uma história não é feita só dos dias perfeitos. Ela também é feita das conversas, das descobertas, dos aprendizados e da escolha de tratar um ao outro com cuidado.</p>
+      <div class="memory"><strong>28 de outubro de 2025</strong><p>O começo de uma história que ganhou um significado enorme.</p></div>
+      <div class="memory"><strong>O que vem daqui pra frente</strong><p>Não quero apressar capítulos. Quero que cada passo seja leve, sincero e escolhido pelos dois.</p></div>
+      <p class="small">Você pode editar estas lembranças e acrescentar datas importantes de vocês.</p>
+      <div class="memory"><strong>O que eu guardo dessa história</strong><p>Eu lembro do começo, das conversas, das expectativas e de como você foi ganhando um espaço enorme na minha vida. Também lembro que nem tudo foi fácil. Nossa história tem momentos bonitos e momentos que ensinaram bastante. Não quero fingir que os difíceis não existiram, quero aprender com eles e cuidar melhor do que a gente constrói.</p></div>
+      <div class="memory"><strong>Uma coisa que eu quero respeitar</strong><p>A nossa história pertence aos dois. Não quero decidir sozinho como ela deve continuar. Quero que cada próximo capítulo seja escolhido com vontade, tranquilidade e verdade pelos dois.</p></div>
+    </div>
+  </section>
+
+  <section id="cartas">
+    <div class="section-head"><small>palavras guardadas</small><h2>Cartas para você</h2></div>
+    <div class="grid">
+      <article class="card"><h3>Quando o dia pesar</h3><p>Amor, respira um pouquinho. Você não precisa resolver tudo agora e nem fingir que tá bem só pra não preocupar ninguém. Espero que você consiga se acolher, descansar e lembrar que não precisa ser forte o tempo inteiro. Se quiser conversar, eu quero te ouvir. Se quiser ficar quietinha, também vou respeitar. Você não precisa me entregar uma versão perfeita de você.</p></article>
+      <article class="card"><h3>Quando sentir saudade</h3><p>Eu também sinto sua falta, Japa. Mas não quero que a saudade vire uma cobrança ou que você se sinta obrigada a estar disponível o tempo todo. Quero que a gente tenha vontade de se procurar, não medo de decepcionar um ao outro. Meu carinho por você não precisa virar pressão.</p></article>
+      <article class="card"><h3>Quando duvidar do seu valor</h3><p>Queria que você conseguisse se enxergar com um pouco do carinho com que eu te enxergo. Você tem valor mesmo nos dias em que não consegue perceber isso. Não precisa aceitar menos respeito, cuidado ou consideração do que merece. E eu também preciso lembrar disso nas minhas atitudes: amar você é te tratar com respeito, inclusive quando a gente discorda.</p></article>
+      <article class="card"><h3>Quando precisar de espaço</h3><p>Ter seu tempo não significa que você deixou de se importar. Você pode respirar, cuidar das suas coisas e ficar um pouco na sua sem ter que se explicar o tempo inteiro. Quero aprender a não interpretar cada silêncio como abandono. Espaço também pode fazer parte de uma relação saudável.</p></article>
+      <article class="card wide"><h3>Uma carta minha, sem cobrança</h3><p>Minha Japa, eu queria que você soubesse que esses dias me fizeram pensar em muita coisa. Eu percebi que, em alguns momentos, minha intensidade e minhas exigências acabaram pesando pra você. Talvez eu estivesse tão preocupado em sentir segurança e receber demonstrações que não percebi o quanto precisava também te escutar e entender o que você estava vivendo.</p><p>Eu não quero voltar ou continuar perto só porque a saudade aperta, porque a distância dói ou porque nenhum dos dois gosta de ficar longe. Eu quero que qualquer escolha nossa venha de vontade, consciência e tranquilidade. Não quero te convencer com um texto bonito e depois repetir as mesmas atitudes. Quero reconhecer meus erros e trabalhar neles de verdade.</p><p>Eu te amo, Ana Júlia. Amo seu jeito, suas particularidades, suas qualidades e até as pequenas coisas que talvez você nem imagine que eu percebo. Você é importante pra mim, mas eu não quero colocar nas suas costas a responsabilidade pela minha felicidade. Quero ser alguém que soma, que escuta, que respeita e que também sabe cuidar das próprias emoções.</p><p>Não espero que você responda essa carta de um jeito específico. Não é uma prova, nem um pedido escondido. É só uma forma de deixar registrado o que eu venho entendendo: amor não é só sentir muito. É aprender a cuidar melhor. E é isso que eu quero fazer, um dia de cada vez.</p><p>Com carinho, TH.</p></article>
+    </div>
+  </section>
+
+  <section id="ela">
+    <div class="section-head"><small>em cada detalhe</small><h2>O que admiro em você</h2></div>
+    <div class="grid">
+      <div class="card"><h3>Seu jeito</h3><p>Eu gosto de conhecer suas particularidades, suas manias, seu jeito de falar e as pequenas coisas que fazem você ser única. Não quero gostar só da ideia que criei de você. Quero continuar conhecendo a pessoa real, com dias bons, dias ruins, vontades e limites.</p></div>
+      <div class="card"><h3>Sua força</h3><p>Eu admiro tudo que você enfrenta e a pessoa que continua tentando ser, mesmo quando as coisas ficam difíceis. Mas não quero que você ache que precisa aguentar tudo sozinha ou provar força o tempo inteiro.</p></div>
+      <div class="card"><h3>Seu valor</h3><p>Você merece carinho sem precisar implorar, respeito mesmo durante uma discussão e liberdade para ser você mesma. Quero que minhas atitudes estejam à altura dessas palavras.</p></div>
+      <div class="card"><h3>O que eu ainda quero descobrir</h3><p>Seus novos sonhos, as coisas que te fazem rir, o que te acalma, o que te anima e até aquilo que muda com o tempo. Amar também é continuar prestando atenção.</p></div>
+    </div>
+  </section>
+
+  <section id="futuro">
+    <div class="section-head"><small>sem pressa, lado a lado</small><h2>O que ainda podemos viver</h2></div>
+    <div class="card">
+      <p>Eu tenho sonhos que envolvem você, mas não quero escrever nosso futuro sozinho nem transformar desejo em obrigação. Quero conversar, descobrir o que também faz sentido pra você e construir planos que sejam nossos de verdade.</p>
+      <div class="memory"><strong>Quero viver coisas simples</strong><p>Conversar sem olhar a hora, rir de besteira, fazer chamadas quando der, dividir novidades do dia e criar lembranças mesmo quando a gente não puder se encontrar.</p></div>
+      <div class="memory"><strong>Quero construir parceria</strong><p>Aprender a resolver as coisas sem machucar, falar com sinceridade, respeitar os limites um do outro e não deixar o orgulho decidir por nós.</p></div>
+      <div class="memory"><strong>Quero que exista espaço pros dois</strong><p>Que cada um continue tendo seus interesses, amizades, objetivos e momentos individuais. Estar junto deve acrescentar à vida, não diminuir o mundo de ninguém.</p></div>
+      <div class="memory"><strong>Quero cuidar do presente</strong><p>Antes de pensar em grandes promessas, quero fazer bem o básico: cumprir o que digo, ser honesto, ouvir com atenção e demonstrar carinho de um jeito que seja bom pros dois.</p></div>
+      <div class="actions"><button class="btn ghost" onclick="window.print()">Guardar esta página em PDF</button><button class="btn ghost" id="logout">Sair do cantinho</button></div>
+    </div>
+  </section>
+</main>
+<footer>feito com carinho, por TH <span class="heart">♥</span> para Ana Júlia<br><span class="small">Amor também é cuidado, respeito e liberdade. Sem pressa e sem cobrança.</span></footer>
+</div>
+<script>
+const $=id=>document.getElementById(id);
+const KEY='japa_th_local_password_v1';
+function showGate(){ $('gate').classList.remove('hidden'); $('site').classList.add('hidden'); }
+function enterSite(){ $('gate').classList.add('hidden'); $('site').classList.remove('hidden'); }
+if(localStorage.getItem(KEY)){ $('login').classList.remove('hidden'); } else {$('setup').classList.remove('hidden');}
+$('savePass').onclick=()=>{let a=$('newPass').value,b=$('confirmPass').value;if(a.length<6){$('err').textContent='Use pelo menos 6 caracteres.';return}if(a!==b){$('err').textContent='As senhas não coincidem.';return}localStorage.setItem(KEY,a);enterSite();};
+$('enter').onclick=()=>{if($('pass').value===localStorage.getItem(KEY)){ $('err').textContent='';enterSite()}else{$('err').textContent='Senha incorreta.'}};
+$('pass').addEventListener('keydown',e=>{if(e.key==='Enter')$('enter').click()});
+$('logout').onclick=()=>{showGate();$('pass').value='';};
+let audioOn=false;
+$('musicToggle').onclick=()=>{if(!$('musicFile').files.length){$('musicFile').click();return}if(audioOn){$('audio').pause();audioOn=false;$('musicToggle').textContent='♫ Música: desligada'}else{$('audio').play().catch(()=>{});audioOn=true;$('musicToggle').textContent='♫ Música: ligada'}};
+$('musicFile').onchange=()=>{let f=$('musicFile').files[0];if(!f)return;$('audio').src=URL.createObjectURL(f);$('audio').classList.remove('hidden');$('audio').play().then(()=>{audioOn=true;$('musicToggle').textContent='♫ Música: ligada'}).catch(()=>{$('musicToggle').textContent='♫ Toque para ouvir'})};
+</script>
+</body></html>
